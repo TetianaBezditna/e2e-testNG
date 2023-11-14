@@ -43,11 +43,11 @@ public abstract class BasePage {
         return By.xpath(value);
     }
     public void inputText(String locator, String text){
-        getDriver().findElement(By.xpath(locator)).sendKeys(text);
+        getDriver().findElement(getLocator(locator)).sendKeys(text);
 
     }
     public void click(String locator){
-        getDriver().findElement(By.xpath(locator)).click();
+        getDriver().findElement(getLocator(locator)).click();
     }
 
     public void checkURL(String URL){
