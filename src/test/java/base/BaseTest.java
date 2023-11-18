@@ -1,6 +1,5 @@
 package base;
 
-import gui.Main;
 import gui.core.WebDriverFactory;
 import gui.pages.*;
 import gui.steps.ContactDetailsSteps;

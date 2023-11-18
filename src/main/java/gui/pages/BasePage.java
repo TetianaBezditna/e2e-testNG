@@ -15,7 +15,6 @@ import java.util.Random;
 
 import static gui.core.WebDriverContainer.containerDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class BasePage {
 
