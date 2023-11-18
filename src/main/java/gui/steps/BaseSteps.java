@@ -1,4 +1,5 @@
 package gui.steps;
+
 import gui.pages.ContactDetailsPage;
 import gui.pages.LoginPage;
 

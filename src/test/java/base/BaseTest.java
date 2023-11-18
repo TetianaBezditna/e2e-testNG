@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 import static gui.core.WebDriverContainer.containerDriver;
 
-public abstract  class BaseTest {
+public abstract class BaseTest {
     protected LoginSteps loginSteps = new LoginSteps();
     protected LoginPage loginPage = new LoginPage();
     protected ResetPage resetPage = new ResetPage();
@@ -26,6 +26,7 @@ public abstract  class BaseTest {
         driver.manage().window().maximize();
         containerDriver().setWebDriver(driver);
     }
+
     @AfterEach
     public void teardown() {
         WebDriver driver = containerDriver().getDriver();

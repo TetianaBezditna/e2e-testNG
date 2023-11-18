@@ -6,12 +6,12 @@ public class WebDriverContainer {
     private static WebDriverContainer container;
     private WebDriver driver;
 
-    private WebDriverContainer(){
+    private WebDriverContainer() {
 
     }
 
     public static WebDriverContainer containerDriver() {
-        if(container == null){
+        if (container == null) {
             container = new WebDriverContainer();
         }
 

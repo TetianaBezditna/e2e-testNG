@@ -1,13 +1,11 @@
 package gui.pages;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class LoginPage extends BasePage {
     private final String userNameXpath = "//input[@name='username']";
     private final String passwordFieldXpath = "//input[@name='password']";
     private final String buttonLoginXpath = "//button[@type='submit' and contains(normalize-space(), 'Login')]";
     private final String pageURL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
-    private final String forgotPasswordButtonXpath ="//div[@class='orangehrm-login-forgot']/p";
+    private final String forgotPasswordButtonXpath = "//div[@class='orangehrm-login-forgot']/p";
     private final String validationMessageXpath = "(//div[@class='orangehrm-login-error']//p)[1]";
 
     /**
@@ -19,6 +17,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Fill the login form
+     *
      * @param userName login
      * @param password password
      */
@@ -34,20 +33,14 @@ public class LoginPage extends BasePage {
         click(buttonLoginXpath);
     }
 
-    public void checkPageTitle(String pageTitle){
-        assertEquals(pageTitle,   getPageTitle(pageTitle), "title = " +   pageTitle);
-    }
 
-    public void clickForgotButton(){
+    public void clickForgotButton() {
         click(forgotPasswordButtonXpath);
     }
 
-    public String getCurrentURL(){
-        return getPageURL();
-    }
 
-    public void checkMessage (String value) {
-        checkText(value, validationMessageXpath);
+    public String getMessage() {
+        return getElementText(validationMessageXpath);
     }
 
 }

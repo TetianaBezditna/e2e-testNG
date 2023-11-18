@@ -12,28 +12,28 @@ public class ResetPage extends BasePage{
         return  "(//div[@id='app']//p)" + "[" + a + "]";
     }
 
-    public void checkFormTitle(String expectedValue){
-        checkText(expectedValue, titleResetForm);
+    public String getFormTitle(){
+        return getElementText(titleResetForm);
     }
 
-    public void checkDescription(String expectedValue){
-        checkText(expectedValue, descriptionFormXpath);
+    public String getDescription(){
+        return   getElementText(descriptionFormXpath);
     }
 
-    public void checkNameInModalWindow (String expectedValue){
-        checkText(expectedValue, fieldNameXpath);
+    public String getNameInModalWindow(){
+        return getElementText(fieldNameXpath);
     }
 
-    public void checkPlaceholder (String expectedValue){
-        checkAttributes(expectedValue, inputFieldXpath, "placeholder");
+    public String getPlaceholder (){
+        return getAttribute(inputFieldXpath, "placeholder");
     }
 
-    public void checkCancelButton(){
-        checkElementIsDisplayed(cancelButtonXpath);
+    public Boolean getCancelButton(){
+        return getElementVisibilityResult(cancelButtonXpath);
     }
 
-    public void checkResetPasswordButton(){
-        checkElementIsDisplayed(resetPasswordButtonXpath);
+    public Boolean getResetPasswordButton(){
+        return getElementVisibilityResult(resetPasswordButtonXpath);
     }
 
     public void fillResetPasswordForm(String value){
@@ -47,11 +47,11 @@ public class ResetPage extends BasePage{
         click(cancelButtonXpath);
     }
 
-    public void checkInfoInTheForm(String expectedValue, int a){
-        checkText(expectedValue, xpathDescription(a));
+    public String getInfoInTheForm(int a){
+        return getElementText(xpathDescription(a));
     }
-    public void checkValidationMessage(String expectedValue){
-        checkText(expectedValue, validationMessage);
+    public String getValidationMessage(){
+        return getElementText(validationMessage);
     }
 
 }

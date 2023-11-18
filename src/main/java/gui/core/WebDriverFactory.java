@@ -21,17 +21,17 @@ public class WebDriverFactory {
                 return configEdge();
             default:
                 System.out.println("Wrong browser name: " + browser);
-               return configChrome();
+                return configChrome();
         }
     }
 
-    private static ChromeDriver configChrome(){
+    private static ChromeDriver configChrome() {
         ChromeOptions options = new ChromeOptions();
         options.setImplicitWaitTimeout(Duration.ofMillis(10000));
         return new ChromeDriver(options);
     }
 
-    private static FirefoxDriver configFirefox(){
+    private static FirefoxDriver configFirefox() {
         FirefoxOptions options = new FirefoxOptions();
         options.setImplicitWaitTimeout(Duration.ofMillis(10000));
         return new FirefoxDriver(options);

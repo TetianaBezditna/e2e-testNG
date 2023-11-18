@@ -1,7 +1,10 @@
 
 import base.BaseTest;
 import org.junit.jupiter.api.*;
-public class TestContactDetailsForm  extends BaseTest {
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TestContactDetailsForm extends BaseTest {
     @Test
     public void upgradeContactDetails() {
 
@@ -18,24 +21,29 @@ public class TestContactDetailsForm  extends BaseTest {
         final String countryName;
 
         loginSteps.login(userName, password);
+
         menuPage.openTheMyInfoCategory();
+
         myInfoPage.openContactDetailsCategory();
+
         contactPage.clearForm();
+        //fill form
         expectedSecondStreet = contactPage.fillField(secondStreetField, "test Street ");
         expectedState = contactPage.fillField(stateField, "test State ");
         expectedHomePhoneName = contactPage.fillField(homePhoneField, "+");
-        expectedWorkEmail = contactPage.fillField(workEmailField, "test@gmail.com");;
+        expectedWorkEmail = contactPage.fillField(workEmailField, "test@gmail.com");
         countryName = contactDetailsSteps.selectCountry();
+
         contactPage.saveForm();
         contactPage.waitForToastToDisappear();
         contactPage.refreshPage();
         contactPage.waitFieldNameIsPresent(expectedSecondStreet);
         //check
-        contactPage.checkStreet(expectedSecondStreet);
-        contactPage.checkCountry(countryName);
-        contactPage.checkState(expectedState);
-        contactPage.checkHomePhoneField(expectedHomePhoneName);
-        contactPage.checkEmailField(expectedWorkEmail);
+        assertEquals(expectedSecondStreet, contactPage.getStreetName());
+        assertEquals(countryName, contactPage.getCountryName());
+        assertEquals(expectedState, contactPage.getStateName());
+        assertEquals(expectedHomePhoneName, contactPage.getHomePhoneValue());
+        assertEquals(expectedWorkEmail, contactPage.getEmailFieldValue());
 
     }
 }

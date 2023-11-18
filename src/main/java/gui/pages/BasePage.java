@@ -64,12 +64,10 @@ public abstract class BasePage {
     public void checkText(String expectedValue, String locator){
         assertEquals(expectedValue, getElementText(locator));
     }
-    public void checkAttributes (String expectedValue, String locator, String value){
-        assertEquals(expectedValue, getAttribute(locator, value));
-    }
 
-    public void checkElementIsDisplayed(String locator){
-        assertTrue(getDriver().findElement(getLocator(locator)).isDisplayed());
+
+    public Boolean getElementVisibilityResult(String locator){
+      return getDriver().findElement(getLocator(locator)).isDisplayed();
 
     }
 

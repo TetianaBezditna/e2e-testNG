@@ -1,10 +1,13 @@
 
 import base.BaseTest;
 import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TestLogin extends BaseTest {
 
     @Test
-    public void loginInSite (){
+    public void loginInSite() {
 
         final String userName = "Admin";
         final String password = "admin123";
@@ -12,8 +15,8 @@ public class TestLogin extends BaseTest {
         final String expectedURL = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
         loginSteps.login(userName, password);
-        loginPage.checkPageTitle(pageTitle);
-        loginPage.checkURL(expectedURL);
+        assertEquals(pageTitle, loginPage.getPageTitle(pageTitle));
+        assertEquals(expectedURL, loginPage.getPageURL());
     }
 
 }
