@@ -14,59 +14,54 @@ import java.util.List;
 import java.util.Random;
 
 import static gui.core.WebDriverContainer.containerDriver;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class BasePage {
 
     protected WebDriver getDriver() {
-       return containerDriver().getDriver();
+        return containerDriver().getDriver();
     }
 
-    public String getPageTitle(String pageTitle ){
+    public String getPageTitle(String pageTitle) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.titleIs(pageTitle));
         return getDriver().getTitle();
     }
+
     public String getPageURL() {
         return getDriver().getCurrentUrl();
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         getDriver().navigate().refresh();
     }
 
     public void open(String URL) {
         getDriver().get(URL);
     }
+
     public By getLocator(String value) {
         return By.xpath(value);
     }
-    public void inputText(String locator, String text){
+
+    public void inputText(String locator, String text) {
         getDriver().findElement(getLocator(locator)).sendKeys(text);
 
     }
-    public void click(String locator){
+
+    public void click(String locator) {
         getDriver().findElement(getLocator(locator)).click();
     }
 
-    public void checkURL(String URL){
-        assertEquals(URL, getPageURL());
+    public String getElementText(String locator) {
+        return getDriver().findElement(getLocator(locator)).getText();
     }
 
-    public String getElementText (String locator){
-        return  getDriver().findElement(getLocator(locator)).getText();
+    public String getAttribute(String locator, String value) {
+        return getDriver().findElement(getLocator(locator)).getAttribute(value);
     }
 
-    public String getAttribute(String locator, String value){
-        return   getDriver().findElement(getLocator(locator)).getAttribute(value);
-    }
-    public void checkText(String expectedValue, String locator){
-        assertEquals(expectedValue, getElementText(locator));
-    }
-
-
-    public Boolean getElementVisibilityResult(String locator){
-      return getDriver().findElement(getLocator(locator)).isDisplayed();
+    public Boolean getElementVisibilityResult(String locator) {
+        return getDriver().findElement(getLocator(locator)).isDisplayed();
 
     }
 
@@ -84,9 +79,10 @@ public abstract class BasePage {
 
     /**
      * Get random element from list
-     * @param list   list with items
-     * @return random item
+     *
+     * @param list list with items
      * @param <T>
+     * @return random item
      */
     public <T> T getRandomElement(List<T> list) {
         Random random = new Random();
@@ -96,9 +92,10 @@ public abstract class BasePage {
 
     /**
      * Get list value
+     *
      * @return List <String>
      */
-    public  List<String> getListValue(String locator) {
+    public List<String> getListValue(String locator) {
         List<String> listValue = new ArrayList<>();
         List<WebElement> listWebElements = getDriver().findElements(getLocator(locator));
         String listElement;
@@ -112,19 +109,19 @@ public abstract class BasePage {
         return listValue;
     }
 
-    public Integer getRandomNum (){
+    public Integer getRandomNum() {
         Random rn = new Random();
         int maximum = 10000;
         int minimum = 0;
         return rn.nextInt(maximum - minimum + 1) + minimum;
     }
 
-    public void waitForElementToDisappear (String value, int timeout){
+    public void waitForElementToDisappear(String value, int timeout) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.invisibilityOf(getDriver().findElement(getLocator(value))));
     }
 
-    public void waitTextToBePresentInElementValue(String value, String locator, int timeout){
+    public void waitTextToBePresentInElementValue(String value, String locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.textToBePresentInElementValue(getLocator(locator), value));
     }
